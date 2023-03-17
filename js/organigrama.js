@@ -1,53 +1,51 @@
-
-
 //JavaScript
 
-
-OrgChart.templates.cool = Object.assign({}, OrgChart.templates.ana);
-OrgChart.templates.cool.defs = '<filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="cool-shadow"><feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1" /><feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1" /><feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1" /><feMerge><feMergeNode in="shadowMatrixOuter1" /><feMergeNode in="SourceGraphic" /></feMerge></filter>';
-
-OrgChart.templates.cool.size = [310, 190];
-OrgChart.templates.cool.node = '<rect filter="url(#cool-shadow)"  x="0" y="0" height="190" width="310" fill="#ffffff" stroke-width="1" stroke="#eeeeee" rx="10" ry="10"></rect><rect fill="#ffffff" x="100" y="10" width="200" height="100" rx="10" ry="10" filter="url(#cool-shadow)"></rect><rect stroke="#eeeeee" stroke-width="1" x="10" y="120" width="220" fill="#ffffff" rx="10" ry="10" height="60"></rect><rect stroke="#eeeeee" stroke-width="1" x="240" y="120" width="60" fill="#ffffff" rx="10" ry="10" height="60"></rect><text  style="font-size: 11px;" fill="#afafaf" x="110" y="60">PERFORMANCE</text>'
-    + '<image  xlink:href="https://cdn.balkan.app/shared/speedometer.svg" x="110" y="65" width="32" height="32"></image>';
-
-OrgChart.templates.cool.img = '<clipPath id="{randId}"><rect  fill="#ffffff" stroke="#039BE5" stroke-width="5" x="10" y="10" rx="10" ry="10" width="80" height="100"></rect></clipPath><image preserveAspectRatio="xMidYMid slice" clip-path="url(#{randId})" xlink:href="{val}" x="10" y="10"  width="80" height="100"></image><rect fill="none" stroke="#F57C00" stroke-width="2" x="10" y="10" rx="10" ry="10" width="80" height="100"></rect>';
-
-OrgChart.templates.cool.name = '<text  style="font-size: 18px;" fill="#afafaf" x="110" y="30">{val}</text>';
-OrgChart.templates.cool.title = '<text  style="font-size: 14px;" fill="#F57C00" x="20" y="145">{val}</text>';
-OrgChart.templates.cool.title2 = '<text style="font-size: 14px;" fill="#afafaf" x="20" y="165">{val}</text>';
-OrgChart.templates.cool.points = '<text style="font-size: 24px;" fill="#F57C00" x="270" y="165" text-anchor="middle">{val}</text>';
-OrgChart.templates.cool.performance = '<text style="font-size: 24px;" fill="#F57C00" x="150" y="90" >{val}</text>';
-OrgChart.templates.cool.svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background-color:#F2F2F2;display:block;" width="{w}" height="{h}" viewBox="{viewBox}">{content}</svg>';
-OrgChart.templates.cool.nodeMenuButton =
-    '<g style="cursor:pointer;" transform="matrix(1,0,0,1,270,20)" data-ctrl-n-menu-id="{id}">'
-    + '<rect x="-4" y="-10" fill="#000000" fill-opacity="0" width="22" height="22"></rect>'
-    + '<circle cx="0" cy="0" r="2" fill="#F57C00"></circle>'
-    + '<circle cx="7" cy="0" r="2" fill="#F57C00"></circle><circle cx="14" cy="0" r="2" fill="#F57C00"></circle>'
-    + '</g>';
-
-var chart;
-chart = new OrgChart(document.getElementById('tree'), {
-    mouseScrool: OrgChart.none,
+var chart = new OrgChart(document.getElementById("tree"), {
+    template: 'olivia',    
+    // mouseScrool: OrgChart.none,
+    layout: OrgChart.mixed,
     enableSearch: false,
-    template: 'cool',
     nodeBinding: {
-        name: 'name',
-        title: 'title',
-        title2: 'title2',
-        points: 'points',
-        performance: 'performance',
-        img: 'img'
-    },
-    nodeMenu: {
-        details: { text: "Details" },
-        edit: { text: "Edit" },
-        add: { text: "Add" },
-        remove: { text: "Remove" }
-    },
+        img_0: "img",
+        field_0: "name",
+        field_1: "title"
+    }
 });
 
 chart.load([
-    { id: 1, performance: 11, points: 50, name: 'Caden Ellison', title: 'Dev Manager', title2: 'Application Development', img: 'https://cdn.balkan.app/shared/1.jpg' },
-    { id: 2, performance: 33, points: 99, name: 'Fran Parsons', title: 'Developer', pid: 1, title2: 'Application Development', img: 'https://cdn.balkan.app/shared/2.jpg' },
-    { id: 3, performance: 99, points: 34, name: 'Lynn Hussain', title: 'Sales', pid: 1, title2: 'Application Development', img: 'https://cdn.balkan.app/shared/3.jpg' }
+    { id: "1", name: "Sala General", img: "./images/icono-cun.png" },
+    { id: "2", pid: "1", name: "Revisoría Fiscal", title: "QA Lead", email: "ava@domain.com", img: "https://cdn.balkan.app/shared/2.jpg" },
+    { id: "3", pid: "1", name: "Presidencia", title: "Technical Director", img: "https://cdn.balkan.app/shared/anim/1.gif" },
+    { id: "4", pid: "1", name: "Secretaría General", title: "Manager", email: "jay@domain.com", img: "https://cdn.balkan.app/shared/4.jpg" },
+    //Retoria
+    { id: "5", pid: "3", name: "Rectoría", title: ".NET Team Lead", email: "kohen@domain.com", img: "https://cdn.balkan.app/shared/8.jpg" },
+    { id: "6", pid: "5", name: "Consejo Directivo", title: ".NET Team Lead", email: "kohen@domain.com", img: "https://cdn.balkan.app/shared/8.jpg" },
+    { id: "7", pid: "5", name: "Consejo Académico", title: "JS Team Lead", img: "https://cdn.balkan.app/shared/9.jpg" },
+    { id: "8", pid: "5", name: "Vicerrectoría Ejecutiva", title: "Programmer", img: "https://cdn.balkan.app/shared/10.jpg" },
+    { id: "9", pid: "5", name: "Asesor Jurídico", title: "Programmer", img: "https://cdn.balkan.app/shared/11.jpg" },
+    { id: "10", pid: "5", name: "Controller", title: "Programmer", img: "https://cdn.balkan.app/shared/12.jpg" },
+    //sub controllers
+    { id: "11", pid: "10", name: "especialista Auditoria en calidad académica", title: "Programmer", img: "./images/icono-cun.png" },
+    { id: "12", pid: "10", name: "Especialista auditoría de gestion", title: "Programmer", img: "./images/icono-cun.png" },
+    { id: "13", pid: "10", name: "Especielista auditoría de sistemas", title: "Programmer", img: "./images/icono-cun.png" },
+    { id: "14", pid: "10", name: "Analista de calidad", title: "Programmer", img: "./images/icono-cun.png" },
+    { id: "15", pid: "14", name: "", title: "", img: "" },
+    //Vicerrectorias
+    { id: "16", pid: "8", name: "Vicerrectoría de investigación, innovación y emprendimiento", title: "QA", img: "https://cdn.balkan.app/shared/6.jpg" },
+    { id: "17", pid: "8", name: "Vicerrectoría de experiencia", title: "QA", img: "https://cdn.balkan.app/shared/7.jpg" },
+    { id: "18", pid: "8", name: "Vicerrectoría de capital social", title: "QA", img: "https://cdn.balkan.app/shared/5.jpg" },
+    { id: "19", pid: "8", name: "Vicerrectoría de servicios digitales y planeación", title: "Programmer", img: "https://cdn.balkan.app/shared/13.jpg" },
+    { id: "20", pid: "8", name: "Vicerrectoría académica", title: "Marketer", img: "https://cdn.balkan.app/shared/14.jpg" },
+    { id: "21", pid: "8", name: "Vicerrectoría financiera", title: "Designer", img: "https://cdn.balkan.app/shared/15.jpg" },
+    { id: "22", pid: "8", name: "Dirección jurídica", title: "Sales Manager", img: "https://cdn.balkan.app/shared/16.jpg" },
+    //Sub Vicerrectoría de investigación, innovación y emprendimiento
+    { id: "23", pid: "16", name: "Dirección de programas", title: "Sales Manager", img: "https://cdn.balkan.app/shared/16.jpg" },
+    { id: "24", pid: "16", name: "Dirección de innovación", title: "Sales Manager", img: "https://cdn.balkan.app/shared/16.jpg" },
+    { id: "25", pid: "16", name: "Dirección de investigación", title: "Sales Manager", img: "https://cdn.balkan.app/shared/16.jpg" }
 ]);
+
+document.getElementById("selectTemplate").addEventListener("change", function () {
+    chart.config.template = this.value;
+    chart.draw();
+});
+
